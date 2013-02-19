@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<playlist version="1" xmlns="http://xspf.org/ns/0/" xmlns:po="http://www.projectopus.com">
+	<extension application="http://www.projectopus.com">
+		<po:info type="playlist" nid="10197" />
+	</extension>
+	<trackList>
+		<track>
+			<extension application="http://www.projectopus.com">
+				<po:clip length="197000"/>
+				<po:region name="Port Dover">http://www.projectopus.com/regionportal/1860</po:region>
+				<po:tags>
+					<tag tid="2964" size="10">bbq</tag>
+					<tag tid="2824" size="10">country western</tag>
+					<tag tid="2310" size="10">drinkin</tag>
+					<tag tid="2298" size="10">drinking</tag>
+					<tag tid="2825" size="10">drunk</tag>
+					<tag tid="267" size="10">fun</tag>
+					<tag tid="1029" size="10">funny</tag>
+					<tag tid="2017" size="10">light</tag>
+					<tag tid="2311" size="10">redneck country</tag>
+					<tag tid="2309" size="12">shootin' stuff</tag>
+					<tag tid="2287" size="10">somber</tag>
+				</po:tags>
+				<po:genre name="Country">http://www.projectopus.com/genre/20</po:genre>
+				<po:uid>676</po:uid>
+				<po:nid>3307</po:nid>
+				<po:num_listens>5464</po:num_listens>
+				<po:license type="po" />
+			</extension>
+		</track>
+	</trackList>
+</playlist>

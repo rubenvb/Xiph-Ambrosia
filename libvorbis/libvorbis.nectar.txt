@@ -1,0 +1,53 @@
+﻿##
+# Project Ambrosia: Example: the xiph media libraries: libvorbis
+# Note: only the *.nectar.txt files are under the CC0 license, the actual source code is licensed seperately.
+#
+# Written in 2012 by Ruben Van Boxem <vanboxem.ruben@gmail.com>
+#
+# To the extent possible under law, the author(s) have dedicated all copyright and related
+# and neighboring rights to this software to the public domain worldwide. This software is
+# distributed without any warranty.
+#
+# You should have received a copy of the CC0 Public Domain Dedication along with this software.
+# If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
+#
+
+dep lib ogg
+
+global
+{
+  HEADER_DIRS include lib
+  SOURCE_DIRS lib
+}
+
+lib vorbis : lib ogg
+{
+  HEADER_DIRS include lib
+  HEADERS vorbis/*.h
+  SOURCES analysis.c \
+          bitrate.c \
+          block.c \
+          codebook.c \
+          envelope.c \
+          floor0.c \
+          floor1.c \
+          info.c \
+          lookup.c \
+          lpc.c \
+          lsp.c \
+          mapping0.c \
+          mdct.c \
+          psy.c \
+          registry.c \
+          res0.c \
+          sharedbook.c \
+          smallft.c \
+          synthesis.c \
+          vorbisenc.c \
+          window.c
+}
+
+lib vorbisfile
+{
+  SOURCES vorbisfile.c
+}

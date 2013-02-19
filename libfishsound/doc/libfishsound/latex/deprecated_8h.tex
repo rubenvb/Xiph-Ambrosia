@@ -1,0 +1,88 @@
+\section{deprecated.h File Reference}
+\label{deprecated_8h}\index{deprecated.h@{deprecated.h}}
+Deprecated interfaces.  
+
+
+\subsection*{Typedefs}
+\begin{CompactItemize}
+\item 
+typedef {\bf FishSoundDecoded\_\-Float} {\bf FishSoundDecoded}
+\begin{CompactList}\small\item\em DEPRECATED TYPE. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int {\bf fish\_\-sound\_\-set\_\-decoded\_\-callback} ({\bf FishSound} $\ast$fsound, {\bf FishSoundDecoded} decoded, void $\ast$user\_\-data)
+\begin{CompactList}\small\item\em DEPRECATED FUNCTION. \item\end{CompactList}\item 
+int {\bf fish\_\-sound\_\-set\_\-interleave} ({\bf FishSound} $\ast$fsound, int interleave)
+\begin{CompactList}\small\item\em DEPRECATED FUNCTION. \item\end{CompactList}\item 
+long {\bf fish\_\-sound\_\-encode} ({\bf FishSound} $\ast$fsound, float $\ast$$\ast$pcm, long frames)
+\begin{CompactList}\small\item\em DEPRECATED FUNCTION. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Deprecated interfaces. 
+
+
+
+\subsection{Typedef Documentation}
+\index{deprecated.h@{deprecated.h}!FishSoundDecoded@{FishSoundDecoded}}
+\index{FishSoundDecoded@{FishSoundDecoded}!deprecated.h@{deprecated.h}}
+\subsubsection[{FishSoundDecoded}]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf FishSoundDecoded\_\-Float} {\bf FishSoundDecoded}}\label{deprecated_8h_30f4221d1810083d5907749dcacf8df3}
+
+
+DEPRECATED TYPE. 
+
+Signature of a callback for libfishsound to call when it has decoded PCM audio data, and you want this provided as floats using the current interleave method as set by \doxyref{fish\_\-sound\_\-set\_\-interleave()}{p.}{deprecated_8h_8e6b76134675d948015fe4afa3fe4104}. 
+
+\subsection{Function Documentation}
+\index{deprecated.h@{deprecated.h}!fish\_\-sound\_\-encode@{fish\_\-sound\_\-encode}}
+\index{fish\_\-sound\_\-encode@{fish\_\-sound\_\-encode}!deprecated.h@{deprecated.h}}
+\subsubsection[{fish\_\-sound\_\-encode}]{\setlength{\rightskip}{0pt plus 5cm}long fish\_\-sound\_\-encode ({\bf FishSound} $\ast$ {\em fsound}, \/  float $\ast$$\ast$ {\em pcm}, \/  long {\em frames})}\label{deprecated_8h_6cd1117b2d09f0f9589c8b10cccae75c}
+
+
+DEPRECATED FUNCTION. 
+
+Encode a block of audio \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fsound}]A FishSound$\ast$ handle (created with mode FISH\_\-SOUND\_\-ENCODE) \item[{\em pcm}]The audio data to encode \item[{\em frames}]A count of frames to encode \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]The number of frames encoded \end{Desc}
+\begin{Desc}
+\item[Note:]For multichannel audio, the audio data is interpreted according to the current PCM style \end{Desc}
+\index{deprecated.h@{deprecated.h}!fish\_\-sound\_\-set\_\-decoded\_\-callback@{fish\_\-sound\_\-set\_\-decoded\_\-callback}}
+\index{fish\_\-sound\_\-set\_\-decoded\_\-callback@{fish\_\-sound\_\-set\_\-decoded\_\-callback}!deprecated.h@{deprecated.h}}
+\subsubsection[{fish\_\-sound\_\-set\_\-decoded\_\-callback}]{\setlength{\rightskip}{0pt plus 5cm}int fish\_\-sound\_\-set\_\-decoded\_\-callback ({\bf FishSound} $\ast$ {\em fsound}, \/  {\bf FishSoundDecoded} {\em decoded}, \/  void $\ast$ {\em user\_\-data})}\label{deprecated_8h_dd6f678e9e38d3b27bd8e5b95c2547f1}
+
+
+DEPRECATED FUNCTION. 
+
+Set the callback for libfishsound to call when it has a block of decoded PCM audio ready, and you want this provided as floats using the current interleave method as set by \doxyref{fish\_\-sound\_\-set\_\-interleave()}{p.}{deprecated_8h_8e6b76134675d948015fe4afa3fe4104}. This function, and \doxyref{fish\_\-sound\_\-set\_\-interleave()}{p.}{deprecated_8h_8e6b76134675d948015fe4afa3fe4104}, have been superceded by the typesafe fish\_\-sound\_\-set\_\-decoded\_\-TYPE() callbacks, such as \doxyref{fish\_\-sound\_\-set\_\-decoded\_\-float()}{p.}{decode_8h_e821800e11efe106676d7ce4c743328a} or \doxyref{fish\_\-sound\_\-set\_\-decoded\_\-float\_\-ilv()}{p.}{decode_8h_3a4055f579b841a5c05d2a2865f5e939}.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fsound}]A FishSound$\ast$ handle (created with mode FISH\_\-SOUND\_\-DECODE) \item[{\em decoded}]The callback to call \item[{\em user\_\-data}]Arbitrary user data to pass to the callback \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success, -1 on failure \end{Desc}
+\index{deprecated.h@{deprecated.h}!fish\_\-sound\_\-set\_\-interleave@{fish\_\-sound\_\-set\_\-interleave}}
+\index{fish\_\-sound\_\-set\_\-interleave@{fish\_\-sound\_\-set\_\-interleave}!deprecated.h@{deprecated.h}}
+\subsubsection[{fish\_\-sound\_\-set\_\-interleave}]{\setlength{\rightskip}{0pt plus 5cm}int fish\_\-sound\_\-set\_\-interleave ({\bf FishSound} $\ast$ {\em fsound}, \/  int {\em interleave})}\label{deprecated_8h_8e6b76134675d948015fe4afa3fe4104}
+
+
+DEPRECATED FUNCTION. 
+
+Set the PCM format used by a FishSound object. The default value is non-interleaved. Prior to libfishsound 0.7.0, you would (optionally) specify whether you wanted to receive interleaved or per-channel PCM data using \doxyref{fish\_\-sound\_\-set\_\-interleave()}{p.}{deprecated_8h_8e6b76134675d948015fe4afa3fe4104}, the default being per-channel (non-interleaved) PCM. Whether or not your decoded callback expects interleaved or non-interleaved data is now implied by the particular fish\_\-sound\_\-set\_\-decoded\_\-TYPE() method you use to set it, such as \doxyref{fish\_\-sound\_\-set\_\-decoded\_\-float()}{p.}{decode_8h_e821800e11efe106676d7ce4c743328a} or \doxyref{fish\_\-sound\_\-set\_\-decoded\_\-float\_\-ilv()}{p.}{decode_8h_3a4055f579b841a5c05d2a2865f5e939}.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fsound}]A FishSound$\ast$ handle \item[{\em interleave}]Whether to use interleaved PCM or not. Valid values are 0 for non-interleaved, and 1 for interleaved. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Return values:]
+\begin{description}
+\item[{\em 0}]Success \item[{\em -1}]Invalid {\em fsound\/} \end{description}
+\end{Desc}

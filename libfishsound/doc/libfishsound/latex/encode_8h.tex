@@ -1,0 +1,93 @@
+\section{encode.h File Reference}
+\label{encode_8h}\index{encode.h@{encode.h}}
+Encode functions and callback prototypes.  
+
+
+\subsection*{Typedefs}
+\begin{CompactItemize}
+\item 
+typedef int($\ast$ {\bf FishSoundEncoded} )({\bf FishSound} $\ast$fsound, unsigned char $\ast$buf, long bytes, void $\ast$user\_\-data)
+\begin{CompactList}\small\item\em Signature of a callback for libfishsound to call when it has encoded data. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int {\bf fish\_\-sound\_\-set\_\-encoded\_\-callback} ({\bf FishSound} $\ast$fsound, {\bf FishSoundEncoded} encoded, void $\ast$user\_\-data)
+\begin{CompactList}\small\item\em Set the callback for libfishsound to call when it has a block of encoded data ready. \item\end{CompactList}\item 
+long {\bf fish\_\-sound\_\-encode\_\-float} ({\bf FishSound} $\ast$fsound, float $\ast$pcm[$\,$], long frames)
+\begin{CompactList}\small\item\em Encode a block of PCM audio given as non-interleaved floats. \item\end{CompactList}\item 
+long {\bf fish\_\-sound\_\-encode\_\-float\_\-ilv} ({\bf FishSound} $\ast$fsound, float $\ast$$\ast$pcm, long frames)
+\begin{CompactList}\small\item\em Encode a block of audio given as interleaved floats. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Encode functions and callback prototypes. 
+
+
+
+\subsection{Typedef Documentation}
+\index{encode.h@{encode.h}!FishSoundEncoded@{FishSoundEncoded}}
+\index{FishSoundEncoded@{FishSoundEncoded}!encode.h@{encode.h}}
+\subsubsection[{FishSoundEncoded}]{\setlength{\rightskip}{0pt plus 5cm}typedef int($\ast$ {\bf FishSoundEncoded})({\bf FishSound} $\ast$fsound, unsigned char $\ast$buf, long bytes, void $\ast$user\_\-data)}\label{encode_8h_7611595d35d3a08253341783adb2c0c9}
+
+
+Signature of a callback for libfishsound to call when it has encoded data. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fsound}]The FishSound$\ast$ handle \item[{\em buf}]The encoded data \item[{\em bytes}]The count of bytes encoded \item[{\em user\_\-data}]Arbitrary user data \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Return values:]
+\begin{description}
+\item[{\em 0}]to continue \item[{\em non-zero}]to stop encoding immediately and return control to the \doxyref{fish\_\-sound\_\-encode()}{p.}{deprecated_8h_6cd1117b2d09f0f9589c8b10cccae75c} caller \end{description}
+\end{Desc}
+
+
+\subsection{Function Documentation}
+\index{encode.h@{encode.h}!fish\_\-sound\_\-encode\_\-float@{fish\_\-sound\_\-encode\_\-float}}
+\index{fish\_\-sound\_\-encode\_\-float@{fish\_\-sound\_\-encode\_\-float}!encode.h@{encode.h}}
+\subsubsection[{fish\_\-sound\_\-encode\_\-float}]{\setlength{\rightskip}{0pt plus 5cm}long fish\_\-sound\_\-encode\_\-float ({\bf FishSound} $\ast$ {\em fsound}, \/  float $\ast$ {\em pcm}[$\,$], \/  long {\em frames})}\label{encode_8h_d06e3a04cde6e56a0accfc948c9748a6}
+
+
+Encode a block of PCM audio given as non-interleaved floats. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fsound}]A FishSound$\ast$ handle (created with mode FISH\_\-SOUND\_\-ENCODE) \item[{\em pcm}]The audio data to encode \item[{\em frames}]A count of frames to encode \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]The number of frames encoded \end{Desc}
+\begin{Desc}
+\item[Note:]For multichannel audio, the audio data is interpreted according to the current PCM style \end{Desc}
+\index{encode.h@{encode.h}!fish\_\-sound\_\-encode\_\-float\_\-ilv@{fish\_\-sound\_\-encode\_\-float\_\-ilv}}
+\index{fish\_\-sound\_\-encode\_\-float\_\-ilv@{fish\_\-sound\_\-encode\_\-float\_\-ilv}!encode.h@{encode.h}}
+\subsubsection[{fish\_\-sound\_\-encode\_\-float\_\-ilv}]{\setlength{\rightskip}{0pt plus 5cm}long fish\_\-sound\_\-encode\_\-float\_\-ilv ({\bf FishSound} $\ast$ {\em fsound}, \/  float $\ast$$\ast$ {\em pcm}, \/  long {\em frames})}\label{encode_8h_71608dd5615a314a16e2bc4522e5fbde}
+
+
+Encode a block of audio given as interleaved floats. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fsound}]A FishSound$\ast$ handle (created with mode FISH\_\-SOUND\_\-ENCODE) \item[{\em pcm}]The audio data to encode \item[{\em frames}]A count of frames to encode \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]The number of frames encoded \end{Desc}
+\begin{Desc}
+\item[Note:]For multichannel audio, the audio data is interpreted according to the current PCM style \end{Desc}
+\index{encode.h@{encode.h}!fish\_\-sound\_\-set\_\-encoded\_\-callback@{fish\_\-sound\_\-set\_\-encoded\_\-callback}}
+\index{fish\_\-sound\_\-set\_\-encoded\_\-callback@{fish\_\-sound\_\-set\_\-encoded\_\-callback}!encode.h@{encode.h}}
+\subsubsection[{fish\_\-sound\_\-set\_\-encoded\_\-callback}]{\setlength{\rightskip}{0pt plus 5cm}int fish\_\-sound\_\-set\_\-encoded\_\-callback ({\bf FishSound} $\ast$ {\em fsound}, \/  {\bf FishSoundEncoded} {\em encoded}, \/  void $\ast$ {\em user\_\-data})}\label{encode_8h_31549d7a9181bfd33945c3f516f05d12}
+
+
+Set the callback for libfishsound to call when it has a block of encoded data ready. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fsound}]A FishSound$\ast$ handle (created with mode FISH\_\-SOUND\_\-ENCODE) \item[{\em encoded}]The callback to call \item[{\em user\_\-data}]Arbitrary user data to pass to the callback \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success, -1 on failure \end{Desc}

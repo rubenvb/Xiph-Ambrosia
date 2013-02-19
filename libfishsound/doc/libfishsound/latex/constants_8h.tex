@@ -1,0 +1,178 @@
+\section{constants.h File Reference}
+\label{constants_8h}\index{constants.h@{constants.h}}
+Constants used by libfishsound.  
+
+
+\subsection*{Typedefs}
+\begin{CompactItemize}
+\item 
+typedef enum {\bf \_\-FishSoundMode} {\bf FishSoundMode}\label{constants_8h_9d9c3b4fa48a4b733a4ea8014fca8d98}
+
+\begin{CompactList}\small\item\em Mode of operation (encode or decode). \item\end{CompactList}\item 
+typedef enum {\bf \_\-FishSoundCodecID} {\bf FishSoundCodecID}\label{constants_8h_ecd02a43422e57cac405a5430289122d}
+
+\begin{CompactList}\small\item\em Identifiers for supported codecs. \item\end{CompactList}\item 
+typedef enum {\bf \_\-FishSoundStopCtl} {\bf FishSoundStopCtl}\label{constants_8h_73ef8d2d14c2d8314dff3b8f3fce4b77}
+
+\begin{CompactList}\small\item\em Decode callback return values. \item\end{CompactList}\item 
+typedef enum {\bf \_\-FishSoundCommand} {\bf FishSoundCommand}\label{constants_8h_18b0ff610b82227e8dced33c6b7944f5}
+
+\begin{CompactList}\small\item\em Command codes. \item\end{CompactList}\item 
+typedef enum {\bf \_\-FishSoundError} {\bf FishSoundError}\label{constants_8h_8977064c438e05393156a731c9c8ae86}
+
+\begin{CompactList}\small\item\em Error values. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Enumerations}
+\begin{CompactItemize}
+\item 
+enum {\bf \_\-FishSoundMode} \{ {\bf FISH\_\-SOUND\_\-DECODE} =  0x10, 
+{\bf FISH\_\-SOUND\_\-ENCODE} =  0x20
+ \}
+\begin{CompactList}\small\item\em Mode of operation (encode or decode). \item\end{CompactList}\item 
+enum {\bf \_\-FishSoundCodecID} \{ {\bf FISH\_\-SOUND\_\-UNKNOWN} =  0x00, 
+{\bf FISH\_\-SOUND\_\-VORBIS} =  0x01, 
+{\bf FISH\_\-SOUND\_\-SPEEX} =  0x02, 
+{\bf FISH\_\-SOUND\_\-FLAC} =  0x03
+ \}
+\begin{CompactList}\small\item\em Identifiers for supported codecs. \item\end{CompactList}\item 
+enum {\bf \_\-FishSoundStopCtl} \{ {\bf FISH\_\-SOUND\_\-CONTINUE} =  0, 
+{\bf FISH\_\-SOUND\_\-STOP\_\-OK} =  1, 
+{\bf FISH\_\-SOUND\_\-STOP\_\-ERR} =  -1
+ \}
+\begin{CompactList}\small\item\em Decode callback return values. \item\end{CompactList}\item 
+enum {\bf \_\-FishSoundCommand} \{ \par
+{\bf FISH\_\-SOUND\_\-COMMAND\_\-NOP} =  0x0000, 
+{\bf FISH\_\-SOUND\_\-GET\_\-INFO} =  0x1000, 
+{\bf FISH\_\-SOUND\_\-GET\_\-INTERLEAVE} =  0x2000, 
+{\bf FISH\_\-SOUND\_\-SET\_\-INTERLEAVE} =  0x2001, 
+\par
+\textbf{FISH\_\-SOUND\_\-SET\_\-ENCODE\_\-VBR} =  0x4000, 
+\textbf{FISH\_\-SOUND\_\-COMMAND\_\-MAX}
+ \}
+\begin{CompactList}\small\item\em Command codes. \item\end{CompactList}\item 
+enum {\bf \_\-FishSoundError} \{ \par
+{\bf FISH\_\-SOUND\_\-OK} =  0, 
+{\bf FISH\_\-SOUND\_\-ERR\_\-GENERIC} =  -1, 
+{\bf FISH\_\-SOUND\_\-ERR\_\-BAD} =  -2, 
+{\bf FISH\_\-SOUND\_\-ERR\_\-INVALID} =  -3, 
+\par
+{\bf FISH\_\-SOUND\_\-ERR\_\-OUT\_\-OF\_\-MEMORY} =  -4, 
+{\bf FISH\_\-SOUND\_\-ERR\_\-DISABLED} =  -10, 
+{\bf FISH\_\-SOUND\_\-ERR\_\-SHORT\_\-IDENTIFY} =  -20, 
+{\bf FISH\_\-SOUND\_\-ERR\_\-COMMENT\_\-INVALID} =  -21
+ \}
+\begin{CompactList}\small\item\em Error values. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Constants used by libfishsound. 
+
+
+
+\subsection{Enumeration Type Documentation}
+\index{constants.h@{constants.h}!\_\-FishSoundCodecID@{\_\-FishSoundCodecID}}
+\index{\_\-FishSoundCodecID@{\_\-FishSoundCodecID}!constants.h@{constants.h}}
+\subsubsection[{\_\-FishSoundCodecID}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf \_\-FishSoundCodecID}}\label{constants_8h_ff8c305ecaa5b4dc29894d5d3fefbc08}
+
+
+Identifiers for supported codecs. 
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{FISH\_\-SOUND\_\-UNKNOWN@{FISH\_\-SOUND\_\-UNKNOWN}!constants.h@{constants.h}}\index{constants.h@{constants.h}!FISH\_\-SOUND\_\-UNKNOWN@{FISH\_\-SOUND\_\-UNKNOWN}}\item[{\em 
+FISH\_\-SOUND\_\-UNKNOWN\label{constants_8h_ff8c305ecaa5b4dc29894d5d3fefbc081d6c7c1c4837bc1953fe3ae1962206cb}
+}]Unknown. \index{FISH\_\-SOUND\_\-VORBIS@{FISH\_\-SOUND\_\-VORBIS}!constants.h@{constants.h}}\index{constants.h@{constants.h}!FISH\_\-SOUND\_\-VORBIS@{FISH\_\-SOUND\_\-VORBIS}}\item[{\em 
+FISH\_\-SOUND\_\-VORBIS\label{constants_8h_ff8c305ecaa5b4dc29894d5d3fefbc08219b41711c75ec89b1841e804139ceb1}
+}]Vorbis. \index{FISH\_\-SOUND\_\-SPEEX@{FISH\_\-SOUND\_\-SPEEX}!constants.h@{constants.h}}\index{constants.h@{constants.h}!FISH\_\-SOUND\_\-SPEEX@{FISH\_\-SOUND\_\-SPEEX}}\item[{\em 
+FISH\_\-SOUND\_\-SPEEX\label{constants_8h_ff8c305ecaa5b4dc29894d5d3fefbc08a708255d1f23a5a5db6f1c2d60778eb9}
+}]Speex. \index{FISH\_\-SOUND\_\-FLAC@{FISH\_\-SOUND\_\-FLAC}!constants.h@{constants.h}}\index{constants.h@{constants.h}!FISH\_\-SOUND\_\-FLAC@{FISH\_\-SOUND\_\-FLAC}}\item[{\em 
+FISH\_\-SOUND\_\-FLAC\label{constants_8h_ff8c305ecaa5b4dc29894d5d3fefbc08528dd24db0ba08599924e7476efd0469}
+}]Flac. \end{description}
+\end{Desc}
+
+\index{constants.h@{constants.h}!\_\-FishSoundCommand@{\_\-FishSoundCommand}}
+\index{\_\-FishSoundCommand@{\_\-FishSoundCommand}!constants.h@{constants.h}}
+\subsubsection[{\_\-FishSoundCommand}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf \_\-FishSoundCommand}}\label{constants_8h_7a185639e7fea0051f22b28fdb852048}
+
+
+Command codes. 
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{FISH\_\-SOUND\_\-COMMAND\_\-NOP@{FISH\_\-SOUND\_\-COMMAND\_\-NOP}!constants.h@{constants.h}}\index{constants.h@{constants.h}!FISH\_\-SOUND\_\-COMMAND\_\-NOP@{FISH\_\-SOUND\_\-COMMAND\_\-NOP}}\item[{\em 
+FISH\_\-SOUND\_\-COMMAND\_\-NOP\label{constants_8h_7a185639e7fea0051f22b28fdb852048aec6ad00ae908f69f8136e240641d02d}
+}]No operation. \index{FISH\_\-SOUND\_\-GET\_\-INFO@{FISH\_\-SOUND\_\-GET\_\-INFO}!constants.h@{constants.h}}\index{constants.h@{constants.h}!FISH\_\-SOUND\_\-GET\_\-INFO@{FISH\_\-SOUND\_\-GET\_\-INFO}}\item[{\em 
+FISH\_\-SOUND\_\-GET\_\-INFO\label{constants_8h_7a185639e7fea0051f22b28fdb852048cd9f0a7348d01ca7ea3ce461245ac1dd}
+}]Retrieve the \doxyref{FishSoundInfo}{p.}{structFishSoundInfo}. \index{FISH\_\-SOUND\_\-GET\_\-INTERLEAVE@{FISH\_\-SOUND\_\-GET\_\-INTERLEAVE}!constants.h@{constants.h}}\index{constants.h@{constants.h}!FISH\_\-SOUND\_\-GET\_\-INTERLEAVE@{FISH\_\-SOUND\_\-GET\_\-INTERLEAVE}}\item[{\em 
+FISH\_\-SOUND\_\-GET\_\-INTERLEAVE\label{constants_8h_7a185639e7fea0051f22b28fdb8520485c3a09a7d6a091dfeadf3570ec5c946e}
+}]Query if multichannel audio should be interpreted as interleaved. \index{FISH\_\-SOUND\_\-SET\_\-INTERLEAVE@{FISH\_\-SOUND\_\-SET\_\-INTERLEAVE}!constants.h@{constants.h}}\index{constants.h@{constants.h}!FISH\_\-SOUND\_\-SET\_\-INTERLEAVE@{FISH\_\-SOUND\_\-SET\_\-INTERLEAVE}}\item[{\em 
+FISH\_\-SOUND\_\-SET\_\-INTERLEAVE\label{constants_8h_7a185639e7fea0051f22b28fdb852048e026d28834d67d6df88e57f1d9f4a031}
+}]Set to 1 to interleave, 0 to non-interleave. \end{description}
+\end{Desc}
+
+\index{constants.h@{constants.h}!\_\-FishSoundError@{\_\-FishSoundError}}
+\index{\_\-FishSoundError@{\_\-FishSoundError}!constants.h@{constants.h}}
+\subsubsection[{\_\-FishSoundError}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf \_\-FishSoundError}}\label{constants_8h_a31123e4a584a5d35b9ed87c9b43e235}
+
+
+Error values. 
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{FISH\_\-SOUND\_\-OK@{FISH\_\-SOUND\_\-OK}!constants.h@{constants.h}}\index{constants.h@{constants.h}!FISH\_\-SOUND\_\-OK@{FISH\_\-SOUND\_\-OK}}\item[{\em 
+FISH\_\-SOUND\_\-OK\label{constants_8h_a31123e4a584a5d35b9ed87c9b43e235398c3bfdfe8e7030de26d13393d0f77c}
+}]No error. \index{FISH\_\-SOUND\_\-ERR\_\-GENERIC@{FISH\_\-SOUND\_\-ERR\_\-GENERIC}!constants.h@{constants.h}}\index{constants.h@{constants.h}!FISH\_\-SOUND\_\-ERR\_\-GENERIC@{FISH\_\-SOUND\_\-ERR\_\-GENERIC}}\item[{\em 
+FISH\_\-SOUND\_\-ERR\_\-GENERIC\label{constants_8h_a31123e4a584a5d35b9ed87c9b43e235a80028f76bb6cc1cdd092e9eeef99730}
+}]generic error \index{FISH\_\-SOUND\_\-ERR\_\-BAD@{FISH\_\-SOUND\_\-ERR\_\-BAD}!constants.h@{constants.h}}\index{constants.h@{constants.h}!FISH\_\-SOUND\_\-ERR\_\-BAD@{FISH\_\-SOUND\_\-ERR\_\-BAD}}\item[{\em 
+FISH\_\-SOUND\_\-ERR\_\-BAD\label{constants_8h_a31123e4a584a5d35b9ed87c9b43e23596b7865eacdd843cd2b53e6d3427bd26}
+}]Not a valid FishSound$\ast$ handle. \index{FISH\_\-SOUND\_\-ERR\_\-INVALID@{FISH\_\-SOUND\_\-ERR\_\-INVALID}!constants.h@{constants.h}}\index{constants.h@{constants.h}!FISH\_\-SOUND\_\-ERR\_\-INVALID@{FISH\_\-SOUND\_\-ERR\_\-INVALID}}\item[{\em 
+FISH\_\-SOUND\_\-ERR\_\-INVALID\label{constants_8h_a31123e4a584a5d35b9ed87c9b43e235ad5c4cda6fecfb092ee39df81795d2a8}
+}]The requested operation is not suitable for this FishSound$\ast$ handle. \index{FISH\_\-SOUND\_\-ERR\_\-OUT\_\-OF\_\-MEMORY@{FISH\_\-SOUND\_\-ERR\_\-OUT\_\-OF\_\-MEMORY}!constants.h@{constants.h}}\index{constants.h@{constants.h}!FISH\_\-SOUND\_\-ERR\_\-OUT\_\-OF\_\-MEMORY@{FISH\_\-SOUND\_\-ERR\_\-OUT\_\-OF\_\-MEMORY}}\item[{\em 
+FISH\_\-SOUND\_\-ERR\_\-OUT\_\-OF\_\-MEMORY\label{constants_8h_a31123e4a584a5d35b9ed87c9b43e2350c3f04fa2357d23d7948ef5e8a167273}
+}]Out of memory. \index{FISH\_\-SOUND\_\-ERR\_\-DISABLED@{FISH\_\-SOUND\_\-ERR\_\-DISABLED}!constants.h@{constants.h}}\index{constants.h@{constants.h}!FISH\_\-SOUND\_\-ERR\_\-DISABLED@{FISH\_\-SOUND\_\-ERR\_\-DISABLED}}\item[{\em 
+FISH\_\-SOUND\_\-ERR\_\-DISABLED\label{constants_8h_a31123e4a584a5d35b9ed87c9b43e2356e34ea5172345c82c43437a0708c6567}
+}]Functionality disabled at build time. \index{FISH\_\-SOUND\_\-ERR\_\-SHORT\_\-IDENTIFY@{FISH\_\-SOUND\_\-ERR\_\-SHORT\_\-IDENTIFY}!constants.h@{constants.h}}\index{constants.h@{constants.h}!FISH\_\-SOUND\_\-ERR\_\-SHORT\_\-IDENTIFY@{FISH\_\-SOUND\_\-ERR\_\-SHORT\_\-IDENTIFY}}\item[{\em 
+FISH\_\-SOUND\_\-ERR\_\-SHORT\_\-IDENTIFY\label{constants_8h_a31123e4a584a5d35b9ed87c9b43e23503320f8b346b8bcb984421c4c72cf347}
+}]Too few bytes passed to \doxyref{fish\_\-sound\_\-identify()}{p.}{fishsound_8h_2776f39cfa1540b1da3c9d423de15ae9}. \index{FISH\_\-SOUND\_\-ERR\_\-COMMENT\_\-INVALID@{FISH\_\-SOUND\_\-ERR\_\-COMMENT\_\-INVALID}!constants.h@{constants.h}}\index{constants.h@{constants.h}!FISH\_\-SOUND\_\-ERR\_\-COMMENT\_\-INVALID@{FISH\_\-SOUND\_\-ERR\_\-COMMENT\_\-INVALID}}\item[{\em 
+FISH\_\-SOUND\_\-ERR\_\-COMMENT\_\-INVALID\label{constants_8h_a31123e4a584a5d35b9ed87c9b43e2351782c042f659a9fb415292a722b04150}
+}]Comment violates VorbisComment restrictions. \end{description}
+\end{Desc}
+
+\index{constants.h@{constants.h}!\_\-FishSoundMode@{\_\-FishSoundMode}}
+\index{\_\-FishSoundMode@{\_\-FishSoundMode}!constants.h@{constants.h}}
+\subsubsection[{\_\-FishSoundMode}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf \_\-FishSoundMode}}\label{constants_8h_c949e5a5c7f16cc7fd9d096a39608f34}
+
+
+Mode of operation (encode or decode). 
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{FISH\_\-SOUND\_\-DECODE@{FISH\_\-SOUND\_\-DECODE}!constants.h@{constants.h}}\index{constants.h@{constants.h}!FISH\_\-SOUND\_\-DECODE@{FISH\_\-SOUND\_\-DECODE}}\item[{\em 
+FISH\_\-SOUND\_\-DECODE\label{constants_8h_c949e5a5c7f16cc7fd9d096a39608f346c1e6f5a1f6342f9c36416d9ee9753ae}
+}]Decode. \index{FISH\_\-SOUND\_\-ENCODE@{FISH\_\-SOUND\_\-ENCODE}!constants.h@{constants.h}}\index{constants.h@{constants.h}!FISH\_\-SOUND\_\-ENCODE@{FISH\_\-SOUND\_\-ENCODE}}\item[{\em 
+FISH\_\-SOUND\_\-ENCODE\label{constants_8h_c949e5a5c7f16cc7fd9d096a39608f343270a746cfa774a469f9783b6848279d}
+}]Encode. \end{description}
+\end{Desc}
+
+\index{constants.h@{constants.h}!\_\-FishSoundStopCtl@{\_\-FishSoundStopCtl}}
+\index{\_\-FishSoundStopCtl@{\_\-FishSoundStopCtl}!constants.h@{constants.h}}
+\subsubsection[{\_\-FishSoundStopCtl}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf \_\-FishSoundStopCtl}}\label{constants_8h_8c3fed4bcbe1fa029b21e433684d22d9}
+
+
+Decode callback return values. 
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{FISH\_\-SOUND\_\-CONTINUE@{FISH\_\-SOUND\_\-CONTINUE}!constants.h@{constants.h}}\index{constants.h@{constants.h}!FISH\_\-SOUND\_\-CONTINUE@{FISH\_\-SOUND\_\-CONTINUE}}\item[{\em 
+FISH\_\-SOUND\_\-CONTINUE\label{constants_8h_8c3fed4bcbe1fa029b21e433684d22d952b16425c46db26ba17e4dc346af4cd0}
+}]Continue calling decode callbacks. \index{FISH\_\-SOUND\_\-STOP\_\-OK@{FISH\_\-SOUND\_\-STOP\_\-OK}!constants.h@{constants.h}}\index{constants.h@{constants.h}!FISH\_\-SOUND\_\-STOP\_\-OK@{FISH\_\-SOUND\_\-STOP\_\-OK}}\item[{\em 
+FISH\_\-SOUND\_\-STOP\_\-OK\label{constants_8h_8c3fed4bcbe1fa029b21e433684d22d9ee1cd144f456275b2294055ad636e4a0}
+}]Stop calling callbacks, but retain buffered data. \index{FISH\_\-SOUND\_\-STOP\_\-ERR@{FISH\_\-SOUND\_\-STOP\_\-ERR}!constants.h@{constants.h}}\index{constants.h@{constants.h}!FISH\_\-SOUND\_\-STOP\_\-ERR@{FISH\_\-SOUND\_\-STOP\_\-ERR}}\item[{\em 
+FISH\_\-SOUND\_\-STOP\_\-ERR\label{constants_8h_8c3fed4bcbe1fa029b21e433684d22d9e25023d0fdd1cc19780661163243f1a2}
+}]Stop calling callbacks, and purge buffered data. \end{description}
+\end{Desc}
+

@@ -1,0 +1,12 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: xspf
+Description: XSPF playlist handling library
+
+Version: @VERSION@
+URL: http://libspiff.sourceforge.net/
+Libs: -L${libdir} -lxspf
+Cflags: -I${includedir}/xspf

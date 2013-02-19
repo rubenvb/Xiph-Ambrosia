@@ -1,0 +1,22 @@
+\section{Encoding audio data}
+\label{group__encode}\index{Encoding audio data@{Encoding audio data}}
+To encode audio data using libfishsound:.  
+
+
+To encode audio data using libfishsound:. 
+
+\begin{itemize}
+\item create a FishSound$\ast$ object with mode FISH\_\-SOUND\_\-ENCODE, and with a \doxyref{FishSoundInfo}{p.}{structFishSoundInfo} structure filled in with the required encoding parameters. \doxyref{fish\_\-sound\_\-new()}{p.}{fishsound_8h_decddfef35cbbddcc8a76b28c365c527} will return a new FishSound$\ast$ object initialised for encoding.\item provide a FishSoundEncoded callback for libfishsound to call when it has a block of encoded audio\item feed raw PCM audio data to libfishsound via fish\_\-sound\_\-encode\_\-$\ast$(). libfishsound will encode the audio for you, calling the FishSoundEncoded callback you provided earlier each time it has a block of encoded audio ready.\item when finished, call \doxyref{fish\_\-sound\_\-delete()}{p.}{fishsound_8h_002e2dee1a7f736699dba5bec0a81426}.\end{itemize}
+
+
+This procedure is illustrated in src/examples/fishsound-encode.c. Note that this example additionally:\begin{itemize}
+\item uses {\tt libsndfile} to read input from a PCM audio file (WAV, AIFF, etc.)\item uses {\tt liboggz} to encapsulate the encoded FLAC, Speex or Vorbis data in an Ogg stream.\end{itemize}
+
+
+Hence this example code demonstrates all that is needed to encode Ogg FLAC, Speex and Ogg Vorbis files:
+
+
+
+\begin{DocInclude}\begin{verbatim}\end{verbatim}
+\end{DocInclude}
+ 

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="test" />
+		<Option pch_mode="0" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="default">
+				<Option output="..\test.exe" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="..\.." />
+				<Option type="1" />
+				<Option compiler="gcc" />
+			</Target>
+		</Build>
+		<VirtualTargets>
+			<Add alias="All" targets="default;" />
+		</VirtualTargets>
+		<Compiler>
+			<Add directory="..\Expat" />
+			<Add directory="..\..\include" />
+		</Compiler>
+		<Linker>
+			<Add library="..\libxspf.a" />
+		</Linker>
+		<Unit filename="..\..\test\ChunkCallbackSuite.cpp" />
+		<Unit filename="..\..\test\ChunkCallbackSuite.h" />
+		<Unit filename="..\CppTest\collectoroutput.cpp" />
+		<Unit filename="..\CppTest\compileroutput.cpp" />
+		<Unit filename="..\CppTest\cpptest-assert.h" />
+		<Unit filename="..\CppTest\cpptest-collectoroutput.h" />
+		<Unit filename="..\CppTest\cpptest-compileroutput.h" />
+		<Unit filename="..\CppTest\cpptest-htmloutput.h" />
+		<Unit filename="..\CppTest\cpptest-output.h" />
+		<Unit filename="..\CppTest\cpptest-source.h" />
+		<Unit filename="..\CppTest\cpptest-suite.h" />
+		<Unit filename="..\CppTest\cpptest-textoutput.h" />
+		<Unit filename="..\CppTest\cpptest-time.h" />
+		<Unit filename="..\CppTest\cpptest.h" />
+		<Unit filename="..\CppTest\htmloutput.cpp" />
+		<Unit filename="..\CppTest\missing.cpp" />
+		<Unit filename="..\CppTest\missing.h" />
+		<Unit filename="..\CppTest\source.cpp" />
+		<Unit filename="..\CppTest\suite.cpp" />
+		<Unit filename="..\CppTest\textoutput.cpp" />
+		<Unit filename="..\CppTest\time.cpp" />
+		<Unit filename="..\CppTest\utils.cpp" />
+		<Unit filename="..\CppTest\utils.h" />
+		<Unit filename="..\CppTest\winconfig.h" />
+		<Unit filename="..\..\test\DateTimeSuite.cpp" />
+		<Unit filename="..\..\test\DateTimeSuite.h" />
+		<Unit filename="..\..\test\ExtensionReaderFactorySuite.cpp" />
+		<Unit filename="..\..\test\ExtensionReaderFactorySuite.h" />
+		<Unit filename="..\..\test\MaliciousXmlSuite.cpp" />
+		<Unit filename="..\..\test\MaliciousXmlSuite.h" />
+		<Unit filename="..\..\test\MemoryModelSuite.cpp" />
+		<Unit filename="..\..\test\MemoryModelSuite.h" />
+		<Unit filename="..\..\test\OfficialSuite.cpp" />
+		<Unit filename="..\..\test\OfficialSuite.h" />
+		<Unit filename="..\..\test\ProjectOpus\ProjectOpusSuite.cpp" />
+		<Unit filename="..\..\test\ProjectOpus\ProjectOpusSuite.h" />
+		<Unit filename="..\..\test\ReadWriteSuite.cpp" />
+		<Unit filename="..\..\test\ReadWriteSuite.h" />
+		<Unit filename="..\..\test\WhiteSpaceSuite.cpp" />
+		<Unit filename="..\..\test\WhiteSpaceSuite.h" />
+		<Unit filename="..\..\test\test.cpp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

@@ -1,0 +1,40 @@
+\section{FishSound, the sound of fish!}\label{index_intro}
+This is the documentation for the FishSound C API. FishSound provides a simple programming interface for decoding and encoding audio data using Xiph.Org codecs (FLAC, Speex and Vorbis).
+
+libfishsound by itself is designed to handle raw codec streams from a lower level layer such as UDP datagrams. When these codecs are used in files, they are commonly encapsulated in {\tt Ogg} to produce {\em Ogg FLAC\/}, {\em Speex\/} and {\em Ogg Vorbis\/} files. Example C programs using {\tt liboggz} to read and write these files are provided in the libfishsound sources.
+
+For more information on the design and history of libfishsound, see the \doxyref{About }{p.}{group__about} section of this documentation, and the {\tt libfishsound} homepage.\subsection{Contents}\label{index_contents}
+\begin{itemize}
+\item \doxyref{fishsound.h }{p.}{fishsound_8h}: Documentation of the FishSound API.\end{itemize}
+
+
+\begin{itemize}
+\item \doxyref{Handling comments }{p.}{comments_8h}: How to add and retrieve {\em name\/} = {\em value\/} metadata in Vorbis and Speex streams.\end{itemize}
+
+
+\begin{itemize}
+\item \doxyref{Decoding audio data }{p.}{group__decode}: How to decode audio data with FishSound, including source for a fully working Ogg FLAC, Speex and Ogg Vorbis decoder.\end{itemize}
+
+
+\begin{itemize}
+\item \doxyref{Encoding audio data }{p.}{group__encode}: How to encode audio data with FishSound, including source for a fully working Ogg FLAC, Speex and Ogg Vorbis encoder.\end{itemize}
+
+
+\begin{itemize}
+\item \doxyref{Configuration }{p.}{group__configuration}: Customizing libfishsound to only decode or encode, or to disable support for a particular codec.\end{itemize}
+
+
+\begin{itemize}
+\item \doxyref{Building }{p.}{group__building}: Information related to building software that uses libfishsound.\end{itemize}
+
+
+\begin{itemize}
+\item \doxyref{About }{p.}{group__about}: Design, motivation, history and acknowledgements.\end{itemize}
+\section{Licensing}\label{index_Licensing}
+libfishsound is provided under the following BSD-style open source license:
+
+
+
+\begin{DocInclude}\begin{verbatim}\end{verbatim}
+\end{DocInclude}
+ 

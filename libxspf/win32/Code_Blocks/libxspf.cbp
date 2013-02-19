@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="libxspf" />
+		<Option pch_mode="0" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="default">
+				<Option output="..\libxspf.a" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+			</Target>
+		</Build>
+		<VirtualTargets>
+			<Add alias="All" targets="default;" />
+		</VirtualTargets>
+		<Compiler>
+			<Add option="-pedantic" />
+			<Add option="-W" />
+			<Add option="-Wall" />
+			<Add option="-DCOMPILED_FROM_DSP" />
+			<Add directory="..\Expat" />
+			<Add directory="..\..\include" />
+			<Add directory=".." />
+		</Compiler>
+		<Unit filename="..\..\bindings\c\xspf_c.cpp" />
+		<Unit filename="..\..\bindings\c\xspf_c.h" />
+		<Unit filename="..\..\include\xspf\ProjectOpus\ProjectOpusPlaylistExtension.h" />
+		<Unit filename="..\..\include\xspf\ProjectOpus\ProjectOpusPlaylistExtensionReader.h" />
+		<Unit filename="..\..\include\xspf\ProjectOpus\ProjectOpusPlaylistExtensionWriter.h" />
+		<Unit filename="..\..\include\xspf\Xspf.h" />
+		<Unit filename="..\..\include\xspf\XspfChunkCallback.h" />
+		<Unit filename="..\..\include\xspf\XspfData.h" />
+		<Unit filename="..\..\include\xspf\XspfDateTime.h" />
+		<Unit filename="..\..\include\xspf\XspfDefines.h" />
+		<Unit filename="..\..\include\xspf\XspfExtension.h" />
+		<Unit filename="..\..\include\xspf\XspfExtensionReader.h" />
+		<Unit filename="..\..\include\xspf\XspfExtensionReaderFactory.h" />
+		<Unit filename="..\..\include\xspf\XspfExtensionWriter.h" />
+		<Unit filename="..\..\include\xspf\XspfIndentFormatter.h" />
+		<Unit filename="..\..\include\xspf\XspfProps.h" />
+		<Unit filename="..\..\include\xspf\XspfReader.h" />
+		<Unit filename="..\..\include\xspf\XspfReaderCallback.h" />
+		<Unit filename="..\..\include\xspf\XspfSeamlessFormatter.h" />
+		<Unit filename="..\..\include\xspf\XspfStack.h" />
+		<Unit filename="..\..\include\xspf\XspfToolbox.h" />
+		<Unit filename="..\..\include\xspf\XspfTrack.h" />
+		<Unit filename="..\..\include\xspf\XspfVersion.h" />
+		<Unit filename="..\..\include\xspf\XspfWriter.h" />
+		<Unit filename="..\..\include\xspf\XspfXmlFormatter.h" />
+		<Unit filename="..\..\src\ProjectOpus\ProjectOpusPlaylistExtension.cpp" />
+		<Unit filename="..\..\src\ProjectOpus\ProjectOpusPlaylistExtensionReader.cpp" />
+		<Unit filename="..\..\src\ProjectOpus\ProjectOpusPlaylistExtensionWriter.cpp" />
+		<Unit filename="..\..\src\XspfChunkCallback.cpp" />
+		<Unit filename="..\..\src\XspfData.cpp" />
+		<Unit filename="..\..\src\XspfDataWriter.cpp" />
+		<Unit filename="..\..\src\XspfDataWriter.h" />
+		<Unit filename="..\..\src\XspfDateTime.cpp" />
+		<Unit filename="..\..\src\XspfExtension.cpp" />
+		<Unit filename="..\..\src\XspfExtensionReader.cpp" />
+		<Unit filename="..\..\src\XspfExtensionReaderFactory.cpp" />
+		<Unit filename="..\..\src\XspfExtensionWriter.cpp" />
+		<Unit filename="..\..\src\XspfIndentFormatter.cpp" />
+		<Unit filename="..\..\src\XspfProps.cpp" />
+		<Unit filename="..\..\src\XspfPropsWriter.cpp" />
+		<Unit filename="..\..\src\XspfPropsWriter.h" />
+		<Unit filename="..\..\src\XspfReader.cpp" />
+		<Unit filename="..\..\src\XspfReaderCallback.cpp" />
+		<Unit filename="..\..\src\XspfSeamlessFormatter.cpp" />
+		<Unit filename="..\..\src\XspfSkipExtensionReader.cpp" />
+		<Unit filename="..\..\src\XspfSkipExtensionReader.h" />
+		<Unit filename="..\..\src\XspfStrictReaderCallback.cpp" />
+		<Unit filename="..\..\src\XspfStrictReaderCallback.h" />
+		<Unit filename="..\..\src\XspfToolbox.cpp" />
+		<Unit filename="..\..\src\XspfTrack.cpp" />
+		<Unit filename="..\..\src\XspfTrackWriter.cpp" />
+		<Unit filename="..\..\src\XspfTrackWriter.h" />
+		<Unit filename="..\..\src\XspfWriter.cpp" />
+		<Unit filename="..\..\src\XspfXmlFormatter.cpp" />
+		<Unit filename="..\Expat\ascii.h" />
+		<Unit filename="..\Expat\asciitab.h" />
+		<Unit filename="..\Expat\expat.h" />
+		<Unit filename="..\Expat\expat_external.h" />
+		<Unit filename="..\Expat\iasciitab.h" />
+		<Unit filename="..\Expat\internal.h" />
+		<Unit filename="..\Expat\latin1tab.h" />
+		<Unit filename="..\Expat\nametab.h" />
+		<Unit filename="..\Expat\utf8tab.h" />
+		<Unit filename="..\Expat\winconfig.h" />
+		<Unit filename="..\Expat\xmlparse.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\Expat\xmlrole.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\Expat\xmlrole.h" />
+		<Unit filename="..\Expat\xmltok.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\Expat\xmltok.h" />
+		<Unit filename="..\Expat\xmltok_impl.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\Expat\xmltok_impl.h" />
+		<Unit filename="..\Expat\xmltok_ns.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\uriparser\Uri.h" />
+		<Unit filename="..\uriparser\UriBase.h" />
+		<Unit filename="..\uriparser\UriCommon.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\uriparser\UriCommon.h" />
+		<Unit filename="..\uriparser\UriCompare.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\uriparser\UriDefsAnsi.h" />
+		<Unit filename="..\uriparser\UriDefsConfig.h" />
+		<Unit filename="..\uriparser\UriDefsUnicode.h" />
+		<Unit filename="..\uriparser\UriEscape.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\uriparser\UriFile.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\uriparser\UriIp4.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\uriparser\UriIp4.h" />
+		<Unit filename="..\uriparser\UriIp4Base.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\uriparser\UriIp4Base.h" />
+		<Unit filename="..\uriparser\UriNormalize.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\uriparser\UriNormalizeBase.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\uriparser\UriNormalizeBase.h" />
+		<Unit filename="..\uriparser\UriParse.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\uriparser\UriParseBase.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\uriparser\UriParseBase.h" />
+		<Unit filename="..\uriparser\UriQuery.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\uriparser\UriRecompose.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\uriparser\UriResolve.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\uriparser\UriShorten.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

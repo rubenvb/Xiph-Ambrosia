@@ -1,0 +1,22 @@
+\section{Decoding audio data}
+\label{group__decode}\index{Decoding audio data@{Decoding audio data}}
+To decode audio data using libfishsound:.  
+
+
+To decode audio data using libfishsound:. 
+
+\begin{itemize}
+\item create a FishSound$\ast$ object with mode FISH\_\-SOUND\_\-DECODE. \doxyref{fish\_\-sound\_\-new()}{p.}{fishsound_8h_decddfef35cbbddcc8a76b28c365c527} will return a new FishSound$\ast$ object, initialised for decoding, and the \doxyref{FishSoundInfo}{p.}{structFishSoundInfo} structure will be cleared.\item provide a FishSoundDecoded\_\-$\ast$ callback for libfishsound to call when it has decoded audio.\item (optionally) specify whether you want to receive interleaved or per-channel PCM data, using a \doxyref{fish\_\-sound\_\-set\_\-interleave()}{p.}{deprecated_8h_8e6b76134675d948015fe4afa3fe4104}. The default is for per-channel (non-interleaved) PCM.\item feed encoded audio data to libfishsound via \doxyref{fish\_\-sound\_\-decode()}{p.}{decode_8h_070a1843d6990a00e2471945d40645c7}. libfishsound will decode the audio for you, calling the FishSoundDecoded\_\-$\ast$ callback you provided earlier each time it has a block of audio ready.\item when finished, call \doxyref{fish\_\-sound\_\-delete()}{p.}{fishsound_8h_002e2dee1a7f736699dba5bec0a81426}.\end{itemize}
+
+
+This procedure is illustrated in src/examples/fishsound-decode.c. Note that this example additionally:\begin{itemize}
+\item uses {\tt liboggz} to demultiplex audio data from an Ogg encapsulated FLAC, Speex or Vorbis stream. The step of feeding encoded data to libfishsound is done within the OggzReadPacket callback.\item uses {\tt libsndfile} to write the decoded audio to a WAV file.\end{itemize}
+
+
+Hence this example code demonstrates all that is needed to decode Ogg FLAC, Speex or Ogg Vorbis files:
+
+
+
+\begin{DocInclude}\begin{verbatim}\end{verbatim}
+\end{DocInclude}
+ 

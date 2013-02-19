@@ -1,0 +1,119 @@
+\section{decode.h File Reference}
+\label{decode_8h}\index{decode.h@{decode.h}}
+Decode functions and callback prototypes.  
+
+
+\subsection*{Typedefs}
+\begin{CompactItemize}
+\item 
+typedef int($\ast$ {\bf FishSoundDecoded\_\-Float} )({\bf FishSound} $\ast$fsound, float $\ast$pcm[$\,$], long frames, void $\ast$user\_\-data)
+\begin{CompactList}\small\item\em Signature of a callback for libfishsound to call when it has decoded PCM audio data, and you want this provided as non-interleaved floats. \item\end{CompactList}\item 
+typedef int($\ast$ {\bf FishSoundDecoded\_\-FloatIlv} )({\bf FishSound} $\ast$fsound, float $\ast$$\ast$pcm, long frames, void $\ast$user\_\-data)
+\begin{CompactList}\small\item\em Signature of a callback for libfishsound to call when it has decoded PCM audio data, and you want this provided as interleaved floats. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int {\bf fish\_\-sound\_\-set\_\-decoded\_\-float} ({\bf FishSound} $\ast$fsound, {\bf FishSoundDecoded\_\-Float} decoded, void $\ast$user\_\-data)
+\begin{CompactList}\small\item\em Set the callback for libfishsound to call when it has a block of decoded PCM audio ready, and you want this provided as non-interleaved floats. \item\end{CompactList}\item 
+int {\bf fish\_\-sound\_\-set\_\-decoded\_\-float\_\-ilv} ({\bf FishSound} $\ast$fsound, {\bf FishSoundDecoded\_\-FloatIlv} decoded, void $\ast$user\_\-data)
+\begin{CompactList}\small\item\em Set the callback for libfishsound to call when it has a block of decoded PCM audio ready, and you want this provided as interleaved floats. \item\end{CompactList}\item 
+long {\bf fish\_\-sound\_\-decode} ({\bf FishSound} $\ast$fsound, unsigned char $\ast$buf, long bytes)
+\begin{CompactList}\small\item\em Decode a block of compressed data. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Decode functions and callback prototypes. 
+
+
+
+\subsection{Typedef Documentation}
+\index{decode.h@{decode.h}!FishSoundDecoded\_\-Float@{FishSoundDecoded\_\-Float}}
+\index{FishSoundDecoded\_\-Float@{FishSoundDecoded\_\-Float}!decode.h@{decode.h}}
+\subsubsection[{FishSoundDecoded\_\-Float}]{\setlength{\rightskip}{0pt plus 5cm}typedef int($\ast$ {\bf FishSoundDecoded\_\-Float})({\bf FishSound} $\ast$fsound, float $\ast$pcm[$\,$], long frames, void $\ast$user\_\-data)}\label{decode_8h_bc40e3343ebff3d1418835569079b2c8}
+
+
+Signature of a callback for libfishsound to call when it has decoded PCM audio data, and you want this provided as non-interleaved floats. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fsound}]The FishSound$\ast$ handle \item[{\em pcm}]The decoded audio \item[{\em frames}]The count of frames decoded \item[{\em user\_\-data}]Arbitrary user data \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Return values:]
+\begin{description}
+\item[{\em FISH\_\-SOUND\_\-CONTINUE}]Continue decoding \item[{\em FISH\_\-SOUND\_\-STOP\_\-OK}]Stop decoding immediately and return control to the \doxyref{fish\_\-sound\_\-decode()}{p.}{decode_8h_070a1843d6990a00e2471945d40645c7} caller \item[{\em FISH\_\-SOUND\_\-STOP\_\-ERR}]Stop decoding immediately, purge buffered data, and return control to the \doxyref{fish\_\-sound\_\-decode()}{p.}{decode_8h_070a1843d6990a00e2471945d40645c7} caller \end{description}
+\end{Desc}
+\index{decode.h@{decode.h}!FishSoundDecoded\_\-FloatIlv@{FishSoundDecoded\_\-FloatIlv}}
+\index{FishSoundDecoded\_\-FloatIlv@{FishSoundDecoded\_\-FloatIlv}!decode.h@{decode.h}}
+\subsubsection[{FishSoundDecoded\_\-FloatIlv}]{\setlength{\rightskip}{0pt plus 5cm}typedef int($\ast$ {\bf FishSoundDecoded\_\-FloatIlv})({\bf FishSound} $\ast$fsound, float $\ast$$\ast$pcm, long frames, void $\ast$user\_\-data)}\label{decode_8h_8ba661947284a888e24f7e5d0b076828}
+
+
+Signature of a callback for libfishsound to call when it has decoded PCM audio data, and you want this provided as interleaved floats. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fsound}]The FishSound$\ast$ handle \item[{\em pcm}]The decoded audio \item[{\em frames}]The count of frames decoded \item[{\em user\_\-data}]Arbitrary user data \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Return values:]
+\begin{description}
+\item[{\em FISH\_\-SOUND\_\-CONTINUE}]Continue decoding \item[{\em FISH\_\-SOUND\_\-STOP\_\-OK}]Stop decoding immediately and return control to the \doxyref{fish\_\-sound\_\-decode()}{p.}{decode_8h_070a1843d6990a00e2471945d40645c7} caller \item[{\em FISH\_\-SOUND\_\-STOP\_\-ERR}]Stop decoding immediately, purge buffered data, and return control to the \doxyref{fish\_\-sound\_\-decode()}{p.}{decode_8h_070a1843d6990a00e2471945d40645c7} caller \end{description}
+\end{Desc}
+
+
+\subsection{Function Documentation}
+\index{decode.h@{decode.h}!fish\_\-sound\_\-decode@{fish\_\-sound\_\-decode}}
+\index{fish\_\-sound\_\-decode@{fish\_\-sound\_\-decode}!decode.h@{decode.h}}
+\subsubsection[{fish\_\-sound\_\-decode}]{\setlength{\rightskip}{0pt plus 5cm}long fish\_\-sound\_\-decode ({\bf FishSound} $\ast$ {\em fsound}, \/  unsigned char $\ast$ {\em buf}, \/  long {\em bytes})}\label{decode_8h_070a1843d6990a00e2471945d40645c7}
+
+
+Decode a block of compressed data. 
+
+No internal buffering is done, so a complete compressed audio packet must be passed each time. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fsound}]A FishSound$\ast$ handle (created with mode FISH\_\-SOUND\_\-DECODE) \item[{\em buf}]A buffer containing a compressed audio packet \item[{\em bytes}]A count of bytes to decode (i.e. the length of buf) \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]The number of bytes consumed \end{Desc}
+\begin{Desc}
+\item[Return values:]
+\begin{description}
+\item[{\em FISH\_\-SOUND\_\-ERR\_\-STOP\_\-OK}]Decoding was stopped by a FishSoundDecode$\ast$ callback returning FISH\_\-SOUND\_\-STOP\_\-OK before any input bytes were consumed. This will occur when PCM is decoded from previously buffered input, and stopping is immediately requested. \item[{\em FISH\_\-SOUND\_\-ERR\_\-STOP\_\-ERR}]Decoding was stopped by a FishSoundDecode$\ast$ callback returning FISH\_\-SOUND\_\-STOP\_\-ERR before any input bytes were consumed. This will occur when PCM is decoded from previously buffered input, and stopping is immediately requested. \item[{\em FISH\_\-SOUND\_\-ERR\_\-BAD}]Not a valid FishSound$\ast$ handle \item[{\em FISH\_\-SOUND\_\-ERR\_\-OUT\_\-OF\_\-MEMORY}]Out of memory \end{description}
+\end{Desc}
+\index{decode.h@{decode.h}!fish\_\-sound\_\-set\_\-decoded\_\-float@{fish\_\-sound\_\-set\_\-decoded\_\-float}}
+\index{fish\_\-sound\_\-set\_\-decoded\_\-float@{fish\_\-sound\_\-set\_\-decoded\_\-float}!decode.h@{decode.h}}
+\subsubsection[{fish\_\-sound\_\-set\_\-decoded\_\-float}]{\setlength{\rightskip}{0pt plus 5cm}int fish\_\-sound\_\-set\_\-decoded\_\-float ({\bf FishSound} $\ast$ {\em fsound}, \/  {\bf FishSoundDecoded\_\-Float} {\em decoded}, \/  void $\ast$ {\em user\_\-data})}\label{decode_8h_e821800e11efe106676d7ce4c743328a}
+
+
+Set the callback for libfishsound to call when it has a block of decoded PCM audio ready, and you want this provided as non-interleaved floats. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fsound}]A FishSound$\ast$ handle (created with mode FISH\_\-SOUND\_\-DECODE) \item[{\em decoded}]The callback to call \item[{\em user\_\-data}]Arbitrary user data to pass to the callback \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Return values:]
+\begin{description}
+\item[{\em 0}]Success \item[{\em FISH\_\-SOUND\_\-ERR\_\-BAD}]Not a valid FishSound$\ast$ handle \item[{\em FISH\_\-SOUND\_\-ERR\_\-OUT\_\-OF\_\-MEMORY}]Out of memory \end{description}
+\end{Desc}
+\index{decode.h@{decode.h}!fish\_\-sound\_\-set\_\-decoded\_\-float\_\-ilv@{fish\_\-sound\_\-set\_\-decoded\_\-float\_\-ilv}}
+\index{fish\_\-sound\_\-set\_\-decoded\_\-float\_\-ilv@{fish\_\-sound\_\-set\_\-decoded\_\-float\_\-ilv}!decode.h@{decode.h}}
+\subsubsection[{fish\_\-sound\_\-set\_\-decoded\_\-float\_\-ilv}]{\setlength{\rightskip}{0pt plus 5cm}int fish\_\-sound\_\-set\_\-decoded\_\-float\_\-ilv ({\bf FishSound} $\ast$ {\em fsound}, \/  {\bf FishSoundDecoded\_\-FloatIlv} {\em decoded}, \/  void $\ast$ {\em user\_\-data})}\label{decode_8h_3a4055f579b841a5c05d2a2865f5e939}
+
+
+Set the callback for libfishsound to call when it has a block of decoded PCM audio ready, and you want this provided as interleaved floats. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fsound}]A FishSound$\ast$ handle (created with mode FISH\_\-SOUND\_\-DECODE) \item[{\em decoded}]The callback to call \item[{\em user\_\-data}]Arbitrary user data to pass to the callback \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Return values:]
+\begin{description}
+\item[{\em 0}]Success \item[{\em FISH\_\-SOUND\_\-ERR\_\-BAD}]Not a valid FishSound$\ast$ handle \item[{\em FISH\_\-SOUND\_\-ERR\_\-OUT\_\-OF\_\-MEMORY}]Out of memory \end{description}
+\end{Desc}

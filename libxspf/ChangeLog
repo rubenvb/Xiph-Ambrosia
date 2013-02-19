@@ -1,0 +1,348 @@
+2009-03-07 -- 1.2.0
+
+  * Added: xspf_parse_memory function to C bindings
+      exposing XspfReader::parseMemory
+  * Changed: No longer shipping bundled libcpptest
+  * Changed: New dependencies:
+      - libcpptest 1.1.0 or later
+      - uriparser 0.7.5 or later
+      - pkg-config
+      The libcpptest dependency can be disabled through
+      configuring with --disable-test, which excludes the
+      test suite from compilation.
+  * Fixed: Doc generation bugs
+  * Fixed: Qt Compressed Help files were not installed
+  * Fixed: Shadow/VPATH build doc generation
+
+2009-02-21 -- 1.1.0
+
+  * Changed: Rename from libSpiff to libxspf
+  * Added: pkg-config file
+  * Changed: Build system changes:
+      - configure option --enable-doc added
+      - configure.in renamed to configure.ac
+      - some Autotools files moved to build-aux directory
+      - Nested configure hacks resolved
+  * Added: Qt Assistant documentation output:
+      - Qt Compressed Help (.qch) at
+          * doc/libxspf-doc-*.qch
+          * bindings/c/doc/xspf_c-doc-*.qch
+      - Qt Help Project (.qhp) at
+          * doc/html/index.qhp
+          * bindings/c/doc/html/index.qhp
+      Generation requires Doxygen 1.5.7.1-20081103 or later.
+  * Fixed: Compile errors
+      - with GCC 4.3 in the test suite
+          Thanks to Alexis Ballier for the patch!
+      - with GCC 4.4
+          Thanks to Martin Michlmayr for the patch!
+      - with Sun Ceres C++ 5.10
+          Thanks to Tim Mooney for the patch!
+          Also, http://predef.sf.net/ was helpful again.
+  * Soname: 4:1:0
+
+2008-09-21 -- 1.0.0
+
+  * Improved: XSPF writing API re-designed
+  * Added: Customizable malicious XML detection, off by default
+  * Fixed: Deep-copy broken in SpiffTrack and SpiffProps
+  * Fixed: Strip example working again
+  * Fixed: Some Code::Blocks files missing in release archives
+  * Fixed: Documentation fixes
+  * Added: Virtual hook to hopefully save a few ABI breaks
+      in the future
+  * Improved: Now shipping gnulib's config.guess from HEAD
+  * Changed: No longer exposing these classes:
+      - SpiffDataWriter
+      - SpiffTrackWriter
+      - SpiffPropsWriter
+      - SpiffSkipExtensionReader
+      - SpiffStrictReaderCallback
+  * Changed: No longer bundling Expat and uriparser
+  * Soname: 4:0:0
+
+2008-09-08 -- 1.0.0.rc3
+
+  * Fixed: Skipping errors now supported
+      The strictness which XSPF playlists are parser with
+      can now be controlled from strict to loose.
+  * Changed: Skippable errors (on XSPF level) and
+      fatal errors (below XSPF level) are now disticted.
+      As a consequence a new error handler has been added:
+      SpiffReaderCallback::handleFatalError(..)
+  * Changed: SpiffReaderCallback::notifyStop() replaced
+      by SpiffReaderCallback::notifySuccess()
+  * Fixed: spiff_c compile fix for GCC 4.3
+      Thanks to Ren� Rebe for the patch!
+  * Added: Warnings for keys ("rel" attribute of <meta> and
+      <link> elements) that ..
+      - are not absolute URIs
+      - do not hold version information
+  * Fixed: XML Base support added to ProjectOpus extension
+  * Changed: New message format for spiff_check
+  * Soname: 3:0:0
+
+2008-09-01 -- 1.0.0rc2
+
+  * Fixed: Compile errors in
+      - src/SpiffDateTime.cpp
+      - examples/read/read.cpp
+  * Fixed: Out-of-date uriparser configure check
+  * Fixed: Bundled Win32 uriparser updated to 0.7.2
+  * Soname: 2:1:0
+
+2008-08-31 -- 1.0.0rc1
+
+  * Fixed: XML Base support re-implemented
+  * Added: XML Base support for spiff_c
+  * Added: <creator> field support added to spiff_c
+  * Improved: Header dependencies reduced
+  * Added: URI resolution/reduction helpers added:
+      - SpiffToolbox::makeAbsoluteUri()
+      - SpiffToolbox::makeRelativeUri()
+  * Changed: uriparser requirement bumped from 0.3.0 to 0.7.2.
+  * Added: BUGS file
+  * Fixed: A few classes were not showing up in the documentation:
+      - SpiffExtension
+      - SpiffExtensionReader
+      - SpiffExtensionReaderFactory
+      - SpiffExtensionWriter
+  * Changed: New error handling model introduced.
+      Errors and warnings are now passed to the reader callback:
+      - virtual bool SpiffReaderCallback::handleError(..)
+      - virtual bool SpiffReaderCallback::handleWarning(..)
+      In later versions of libSpiff it will be possible to continue
+      parsing after above-XML-level errors and take control at this point.
+  * Changed: Source incompatible changes include:
+      - Removed deprecated methods:
+          * SpiffIndentFormatter::SpiffIndentFormatter(bool)
+          * SpiffReader::parse(XML_Char const *, SpiffReaderCallback *)
+          * SpiffWriter::write(XML_Char const *)
+      - Removed xml:base functions from SpiffProps:
+          getXmlBase(), stealXmlBase(), giveXmlBase(..), lendXmlBase(..)
+      - Renamed two functions in SpiffReader:
+          * isURI -> isUri
+          * isAbsoluteURI -> isAbsoluteUri
+      - Required parameters for absolute external base URI added:
+          * SpiffReader::parseFile(..)
+          * SpiffReader::parseMemory(..)
+          * SpiffReader::parseChunks(..)
+          * spiff_c: spiff_parse(..)
+          * spiff_c: spiff_write(..)
+      - Moved SpiffWriter instantiation to a factory method:
+          static SpiffWriter * SpiffWriter::makeWriter(..)
+      - Removed old error handling methods:
+          * SpiffReader::getErrorLine()
+          * SpiffReader::getErrorText()
+      - Moved static public helper functions away from SpiffReader:
+          * extractDateTime(..) moved to SpiffDateTime
+          * PORT_ANTOI(..) moved to anonymous namespace in SpiffDateTime
+          * everything else moved to Toolbox
+      - Removed "SpiffDateTime.h" include from "SpiffProps.h"
+  * Soname: 2:0:0
+
+2008-07-31 -- 0.8.4
+
+  * Fixed: Support for 'xml:base' attribute added
+  * Fixed: Test suite compile fix for GCC 4.3
+      Thanks to Samuli Suominen for the patch!
+  * Changed: Code::Blocks project files updated from file format
+      version 1.4 to 1.6, which is produced by Code::Blocks 8.02
+  * Added: Code::Blocks workspace file
+  * Fixed: Bundled Win32 CppTest updated to 1.1.0
+  * Fixed: Bundled Win32 uriparser updated to 0.7.1
+  * Soname: 1:4:0
+
+2008-03-08 -- 0.8.3
+
+  * Fixed: No more compile errors from GCC 4.3 (#1815520)
+      Thanks to Cristian Rodriguez for the patch!
+  * Added: Version guards for Autoconf/Automake
+      Thanks to Martin Michlmayr for reporting!
+  * Fixed: Compile error on Windows caused by out-of-date
+      file lists
+  * Fixed: Bundled Win32 uriparser updated to 0.6.4
+  * Soname: 1:3:0
+
+2007-10-10 -- 0.8.2
+
+  * Fixed: Whitespace test case file missing in release archives
+      Thanks to Adeodato Sim� for reporting this!
+  * Fixed: 'make distcheck' now used and working
+  * Soname: 1:2:0
+
+2007-10-05 -- 0.8.1
+
+  * Fixed: Another bug in whitespace handling 
+  * Fixed: Shadow builds now possible
+
+2007-09-17 -- 0.8.0
+
+  * Fixed: Bug in stealX() functions resulting in double frees
+      Thanks to Eren T�rkay, Robert Buchholz, and Ed Schouten!
+  * Fixed: Win32 people now get the latest Expat and uriparser
+      (Expat 2.0.1, uriparser 0.5.2)
+  * Fixed: Proper soname updates from now on, starting at 1:0:0
+  * Changed: Moved from Visual Studio 2003 to Visual Studio 2005
+
+2007-09-14 -- 0.7.3
+
+  * Fixed: Inconsistent memory ownership logic in
+      Spiff(Data|Track|Props) and related memleaks
+  * Fixed: delete[]/delete mismatches in spiff_c
+      Thanks to Robert Buchholz for reporting both bugs above!
+  * Fixed: Getters in Spiff(Data|Track|Props|Stack)
+      now const member functions
+
+2007-08-09 -- 0.7.2
+
+  * Fixed: Bug in SpiffXmlFormatter::writeStart
+  * Fixed: Visibility bug in SpiffChunkCallback
+      Thanks to Szabolcs Horv�t for reporting these two bugs!
+
+2007-06-04 -- 0.7.1
+
+  * Fixed: Include path order bug in configure.in
+      Thanks to Pierre Queinnec for reporting this!
+  * Changed: Version number of examples set to that of libSpiff
+
+2007-05-30 -- 0.7.0
+
+  * Added: Parsing from a chunk callback
+  * Fixed: Bug allowing text in non-leaf elements
+  * Fixed: Bug in handling of whitespace
+  * Fixed: Bug in destructor of SpiffExtensionReaderFactory
+  * Fixed: Memleak in SpiffReader::parseFile
+  * Fixed: Memleak in destructor of SpiffPropsWriter
+  * Fixed: Memleaks in SpiffXmlFormatter
+  * Fixed: Test suite always returned 0 (success)
+  * Added: Copy constructors and assignment operators
+  * Improved: Speedup for SpiffReader::parseFile
+  * Added: Library/include path separation for dependencies
+  * Improved: Test suite now built on "make check", not before
+  * Changed: spiff_check and spiff_strip now are installed
+  * Changed: D pointers introduced
+  * Changed: SpiffDateTime moved to extra files
+  * Improved: Test suite cleanup
+  * Added: More test cases
+
+2007-04-17 -- 0.6.5
+
+  * Fixed: Make problems with multiple jobs (e.g. running "make -j10")
+  * Fixed: Configure problems with default prefix
+
+2007-04-16 -- 0.6.4
+
+  * Fixed: Link trouble
+
+2007-04-04 -- 0.6.3
+
+  * Added: Writing functionality for C interface
+  * Added: Custom indentation width for SpiffIndentFormatter
+  * Added: Parsing/writing from/to a block of memory
+  * Added: "check" example, validates XSPF version 0 and 1
+  * Added: "strip" example, converts XSPF-1 to XSPF-0
+  * Fixed: Bug for writing XSPF-0
+  * Added: Default implementation for SpiffReaderCallback
+  * Added: More code documentation
+  * Fixed: Consequently Unix line endings
+
+2007-03-29 -- 0.6.2rc1
+
+  * Added: URI validation using uriparser
+  * Fixed: Two memleaks in SpiffPropsWriter
+  * Added: Version defines
+  * Added: More code documentation
+  * Changed: Simplified build architecture
+  * Changed: Test suite included in release packages again
+
+2007-03-24 -- 0.6.1rc1
+
+  * Added: Simple C interface
+  * Added: Shared library support (moved to libtool)
+
+2007-03-06 -- 0.6.0rc1
+
+  * Changed: Library code is now licensed under the new BSD license.
+      The test suite code is still licensed under LGPL.
+  * Added: Full support for XML namespaces
+  * Improved: Better support for XSPF extensions
+  * Added: Example extension implemented (Project Opus)
+  * Changed: URI checks disabled until fully supported
+  * Improved: Test suite updated, cleaned up and extended
+  * Improved: Error strings extracted
+  * Changed: Classes renamed:
+      - SpiffAbstractFormatter -> SpiffXmlFormatter
+      - SpiffFormatterPretty -> SpiffIndentFormatter
+      - SpiffFormatterZero -> SpiffSeamlessFormatter
+  * Fixed: Inconsistent header inclusion
+  * Fixed: Bug for Unix in SpiffDefines.h
+
+2006-11-23 -- 0.5.2
+
+  * Changed: License changed from GPL to LGPL which allows to use libSpiff
+      together with closed source software under certain conditions
+
+2006-10-13 -- 0.5.1
+
+  * Changed: SpiffReaderCallback::setProperties() renamed to setProps()
+  * Improved: More flexible memory ownership model for SpiffReaderCallback:
+      addTrack() and setProps() now have to delete the track/props on
+      their own or can decide to keep the whole instance for own purposes
+  * Added: Integration tutorial (see documentation main page)
+
+2006-10-05 -- 0.4.2
+
+  * Fixed: No more "using ...;" in header files
+  * Fixed: Error messages for trackNum and duration
+  * Fixed: Non-default install location trouble
+  * Improved: More informative error messages for invalid root
+      name and extensions or empty trackLists in XSPF-0
+
+2006-09-15 -- 0.4.1
+
+  * Changed: More flexible data model for SpiffTrack and SpiffProps,
+      common code extracted into a new class SpiffData
+  * Changed: Writer code cleaned up: SpiffBasicTrackWriter class renamed
+      to SpiffTrackWriter, SpiffBasicPropsWriter renamed to SpiffPropsWriter,
+      abstract writer classes removed
+  * Fixed: Broken SpiffWriter reusability
+  * Fixed: config.h Unix/Windows conflict (now called winconfig.h)
+  * Fixed: Small bug in a VS2003 project file
+  * Fixed: Some documentation bugs
+
+2006-09-11 -- 0.3.4
+
+  * Fixed: Character data could contain unescaped "]]>", "<", "&", "'" or "\""
+  * Fixed: "dest = NULL;" bug in Toolbox::deleteNewAndCopy()
+
+2006-09-10 -- 0.3.3
+
+  * Fixed: Capitalized link tag bug
+  * Fixed: More flexible header inclusion
+
+2006-09-09 -- 0.3.2
+
+  * Added: Doxygen documentation
+  * Fixed: Some typedefs moved into Spiff namespace
+  * Fixed: Destructors of SpiffTrack and SpiffProps now virtual
+
+2006-09-05 -- 0.3.1
+
+  * Added: Finishing newline option for SpiffIndentFormatter
+  * Added: Custom libepxat path option for ./configure
+  * Added: Project files for Code::Blocks
+  * Fixed: Include problem with the Visual Studio 2003 project files
+
+2006-09-02 -- 0.3
+
+  * Added: Unix support
+  * Added: Content and formatting separation for the writer
+
+2006-08-28 -- 0.2
+
+  * Added: Support for all elements
+  * Added: Writer implementation
+  * Added: Testsuite integration
+
+2006-08-22 -- 0.1

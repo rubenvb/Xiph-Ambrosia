@@ -1,0 +1,241 @@
+/**
+ * @mainpage
+ *
+ * @section SEC_TOC Table of Contents
+ * - <a href="#SEC_INTRO">Introduction</a>
+ * - <a href="#SEC_READING">Reading a playlist</a>
+ * - <a href="#SEC_WRITING">Writing a playlist</a>
+ * - <a href="#SEC_MALICIOUS">Handling malicious XML</a>
+ *
+ *
+ * @section SEC_INTRO Introduction
+ * Welcome to the short libxspf integration tutorial.
+ * I recommend using this tutorial together with the
+ * code samples in the <c>examples</c> folder; one
+ * of these two sources is likely to answer your questions.
+ * Please drop me a line if you need further assistance.
+ * Good luck with integrating libxspf.
+ *
+ * @section SEC_READING Reading a playlist
+ * To read an XSPF playlist you first need a reader instance:
+ * 
+ * @code
+ * 	XspfReaer reader;
+ * @endcode
+ * 
+ * You use the reader like this:
+ * 
+ * @code
+ * 	XML_Char const * const baseUri = _PT("http://example.org/");
+ * 	reader.parseFile(_PT("playlist.xspf"), NULL, baseUri);
+ * @endcode
+ * 
+ * That _PT() thing is a macro to support Unicode.
+ * More details on this later.
+ * The second parameter is the callback object that
+ * will receive playlist and track information as
+ * they are made available; it can be <c>NULL</c> if you just
+ * want to verify that the given file is valid XSPF
+ * version 0 or 1 but do not need any more specific
+ * information about it. In general it is a pointer
+ * to an instance of a class derived from XspfReaderCallback.
+ * That means it can override these functions:
+ * 
+ * @code
+ * 	void addTrack(XspfTrack * track);
+ * 	void setProps(XspfProps * props);
+ *
+ * 	void notifyFatalError(..);
+ * 	bool handleError(..);
+ * 	bool handleWarning(..);
+ * 	void notifySuccess();
+ * @endcode
+ * 
+ * The first two of these are called by the reader when new
+ * information is made available; setProps() will
+ * be called once per playlist (if the reader has not
+ * stopped before due to an error) but addTrack() can
+ * be called multiple times.
+ * 
+ * @remarks
+ * The callback model was copied from Expat,
+ * the underlying XML parser; this model does not
+ * need the whole XML tree in memory at a time,
+ * thus it is more memory-friendly.
+ * 
+ * These two functions have to do very similar
+ * work: They are passed a data object which they
+ * can analyze (by calling methods starting with "get")
+ * or <i>steal</i> properties from (by calling methods starting with "steal").
+ *
+ * @attention
+ * Both of these functions have to delete the track/props when
+ * they are done to prevent memory leakage or decide to keep them
+ * for later; the reader will not do this work for you!
+ * Furthermore when deleting the track/props instance all
+ * memory not previously <i>stolen</i> from it will also be deleted
+ * by the destructor.
+ * <i>Stealing</i> means transferring the memory's ownership and preventing
+ * it from getting deleted. To avoid memory leakage you should delete
+ * the stolen memory yourself later.
+ * 
+ * @remarks
+ * The whole steal-analyze-model was introduced to reduce
+ * the number of unnecessary copy operations and therefore
+ * speed up the parsing process.
+ * 
+ * When reading is finished the value returned from parseFile() will be
+ * either <c>XSPF_READER_SUCCESS</c> or one of the error codes.
+ * More details about the error occured are passed to the XspfReaderCallback in use.
+ *
+ *
+ * 
+ * @section SEC_WRITING Writing a playlist
+ * To write an XSPF playlist file you first need a writer instance:
+ *
+ * @code
+ * 	XML_Char const * const baseUri = _PT("http://example.org/");
+ * 	XspfWriter * const writer = XspfWriter::makeWriter(formatter, baseUri);
+ * @endcode
+ * 
+ * The first parameter is an XML formatter
+ * (an instance of a class derived from XspfXmlFormatter)
+ * which will mainly control the whitespace in the XML output.
+ * libxspf already comes with two built-in formatters:
+ * XspfIndentFormatter which creates well-indented XML output
+ * and XspfSeamlessFormatter which does not create any whitespace at all.
+ * The second parameter is the base URI used to shorten URIs where possible.
+ *
+ * If our playlist itself has properties we have to set them
+ * before adding any tracks:
+ * 
+ * @code
+ * 	XspfProps props;
+ * 	...
+ * 	/* Fill in props */
+ * 	...
+ * 	writer->setProps(props);
+ * @endcode
+ * 
+ * You could set the playlist's creation time like this:
+ * 
+ * @code
+ * 	XspfDateTime dateTime(2006, 8, 28, 11, 30, 11, 1, 0);
+ * 	props.lendDate(&dateTime);
+ * @endcode
+ * 
+ * Similar to the steal/get duality introduced earlier you have to choose
+ * between the "lend" and "give" function family when setting
+ * information. The whole thing again is only about memory ownership:
+ * The lend functions do not transfer ownership, the give functions do.
+ * The give family also offers to copy the memory or to assign
+ * existing memory. To make this more clear calling 
+ *
+ * @code
+ * 	props.giveTitle(_PT("Some title"), XspfData::TRANSFER);
+ * @endcode
+ * 
+ * would be a bad idea since the memory would not be copied but still
+ * be deleted on destruction. You should use
+ *
+ * @code
+ * 	props.lendTitle(_PT("Some title"));
+ * @endcode
+ * 
+ * in this case.
+ *
+ * Back to the writer: When you have created a XspfWriter instance
+ * you can let it write its content to file:
+ *
+ * @code
+ * 	writer.writeFile(_PT("TEST.xspf"));
+ * @endcode
+ * 
+ * In this case that would make a valid playlist without any tracks.
+ * So before writing the playlist you should add your tracks:
+ *
+ * @code
+ * 	XspfTrack track;
+ * 	...
+ * 	track.lendCreator(_PT("Breaking Benjamin"));
+ * 	...
+ * 	writer.addTrack(track);
+ * @endcode
+ * 
+ * When addTrack() is called the track information is appended to an
+ * internal buffer which is written when writeFile() is called eventually.
+ * You can add the same track several times and you can call writeFile()
+ * several times to write the same playlist to several files;
+ * what you cannot do is add more tracks after writing the playlist
+ * to a file: You will have to call reset() to start over with an empty track list first.
+ * 
+ *
+ * @section SEC_MALICIOUS Handling malicious XML
+ * Let us assume you are using libxspf to power some kind of web service with XSPF
+ * reading cabilities.  Let us further assume this service can accept XSPF input
+ * from a user. Due to the nature of XML your service would be vulnerable to
+ * an <i>XML entity explosion attack</i>. What this means is that a rather small
+ * malicious XML file can make the running XML processor a huge amount of memory
+ * or CPU time or both.
+ *
+ * A popular example is <i>billion laughs</i>, of which an XSPF version
+ * could look like this:
+ *
+ * @code
+ * 	<?xml version="1.0"?>
+ * 	<!DOCTYPE billion [
+ * 	<!ELEMENT billion (#PCDATA)>
+ * 	<!ENTITY laugh0 "ha">
+ * 	<!ENTITY laugh1 "&laugh0;&laugh0;">
+ * 	<!ENTITY laugh2 "&laugh1;&laugh1;">
+ * 	<!ENTITY laugh3 "&laugh2;&laugh2;">
+ * 	<!ENTITY laugh4 "&laugh3;&laugh3;">
+ * 	...
+ * 	<!ENTITY laugh30 "&laugh29;&laugh29;">
+ * 	]>
+ * 	<playlist version="1" xmlns="http://xspf.org/ns/0/">
+ * 	  <title>&laugh30;</title>
+ * 	  <trackList />
+ * 	</playlist>
+ * @endcode
+ *
+ * With malicious XML detection enabled, libxspf sets certain limits
+ * to the values of entities.  Currently these limits are:
+ * - Length of entity values
+ * - Sum of lookups per entity value
+ * - Lookup depth per entity value
+ *
+ * The above <i>billion laughs</i> example has these metrics:
+ * <table border="0">
+ * <tr><td class="indexkey">Entity</td><td class="indexkey">Length</td><td class="indexkey">Lookup Sum</td><td class="indexkey">Lookup Depth</td></tr>
+ * <tr><td class="indexvalue">laugh0</td><td class="indexvalue">2</td><td class="indexvalue">0</td><td class="indexvalue">0</td></tr>
+ * <tr><td class="indexvalue">laugh1</td><td class="indexvalue">4</td><td class="indexvalue">2</td><td class="indexvalue">1</td></tr>
+ * <tr><td class="indexvalue">laugh2</td><td class="indexvalue">8</td><td class="indexvalue">6</td><td class="indexvalue">2</td></tr>
+ * <tr><td class="indexvalue">laugh3</td><td class="indexvalue">16</td><td class="indexvalue">14</td><td class="indexvalue">3</td></tr>
+ * <tr><td class="indexvalue">laugh4</td><td class="indexvalue">32</td><td class="indexvalue">30</td><td class="indexvalue">4</td></tr>
+ * <tr><td class="indexvalue">...</td><td class="indexvalue">...</td><td class="indexvalue">...</td><td class="indexvalue">...</td></tr>
+ * <tr><td class="indexvalue">laugh30</td><td class="indexvalue">2,147,483,648</td><td class="indexvalue">2,147,483,646</td><td class="indexvalue">30</td></tr>
+ * <tr><td class="indexvalue">laugh<i>n</i></td><td class="indexvalue">2^(<i>n</i>+1)</td><td class="indexvalue">2^(<i>n</i>+1)-2</td><td class="indexvalue"><i>n</i></td></tr>
+ * </table>
+ *
+ * Looking at <i>laugh30</i> all three values are much higher than those of most peaceful XML files.
+ * Through calling
+ *
+ * @code
+ * 	reader.enableMaliciousXmlDetection(true);
+ * @endcode
+ *
+ * you can make a XspfReader instance protocol these metrics in order to detect
+ * malicious XML.  Also, all of these metrics can be limited and adjusted individually;
+ * for instance this is how to limit the lookup depth to a maximum of 2:
+ *
+ * @code
+ * 	reader.limitLookupDepthPerEntityValue(true);
+ * 	reader.setMaxLookupDepthPerEntityValue(2);
+ * @endcode
+ *
+ * @attention
+ * Malicious XML detection can only work for you if you are clear
+ * about your software's use cases.  Tune the detection parameters to
+ * what you have to allow and reject everything else.
+ */

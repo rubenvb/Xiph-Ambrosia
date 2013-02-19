@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="check" />
+		<Option pch_mode="0" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="default">
+				<Option output="..\check.exe" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="..\..\examples\check" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option parameters="--version" />
+			</Target>
+		</Build>
+		<VirtualTargets>
+			<Add alias="All" targets="default;" />
+		</VirtualTargets>
+		<Compiler>
+			<Add directory="..\Expat" />
+			<Add directory="..\..\include" />
+		</Compiler>
+		<Linker>
+			<Add library="..\libxspf.a" />
+		</Linker>
+		<Unit filename="..\..\examples\check\check.cpp" />
+		<Extensions>
+			<code_completion />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
