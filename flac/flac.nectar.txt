@@ -1,0 +1,87 @@
+##
+# Project Ambrosia: Example: the xiph media libraries: flac
+# Note: only the *.nectar.txt files are under the CC0 license, the actual source code is licensed seperately.
+#
+# Written in 2012 by Ruben Van Boxem <vanboxem.ruben@gmail.com>
+#
+# To the extent possible under law, the author(s) have dedicated all copyright and related
+# and neighboring rights to this software to the public domain worldwide. This software is
+# distributed without any warranty.
+#
+# You should have received a copy of the CC0 Public Domain Dedication along with this software.
+# If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
+#
+
+dep lib ogg
+
+global
+{
+  HEADER_DIRS include
+}
+
+lib flac : lib ogg
+{
+  DEFINES VERSION="1.2.1b"
+  HEADER_DIRS src/libFLAC/include
+  SOURCE_DIRS src/libFLAC
+  HEADERS FLAC/all.h \
+          FLAC/assert.h \
+          FLAC/callback.h \
+          FLAC/export.h \
+          FLAC/format.h \
+          FLAC/metadata.h \
+          FLAC/ordinals.h \
+          FLAC/stream_decoder.h \
+          FLAC/stream_encoder.h
+  SOURCES bitmath.c \
+          bitreader.c \
+          bitwriter.c \
+          cpu.c \
+          crc.c \
+          fixed.c \
+          float.c \
+          format.c \
+          lpc.c \
+          md5.c \
+          memory.c \
+          metadata_iterators.c \
+          metadata_object.c \
+          ogg_decoder_aspect.c \
+          ogg_encoder_aspect.c \
+          ogg_helper.c \
+          ogg_mapping.c \
+          stream_decoder.c \
+          stream_encoder.c \
+          stream_encoder_framing.c \
+          window.c
+}
+
+app flac : lib flac
+{
+  HEADER_DIRS src/flac
+  SOURCE_DIRS src/flac
+  HEADERS analyze.h \
+          decode.h \
+          encode.h \
+          foreign_metadata.h \
+          local_string_utils.h \
+          utils.h \
+          vorbiscomment.h
+  SOURCES analyze.c \
+          decode.c \
+          encode.c \
+          foreign_metadata.c \
+          local_string_utils.c \
+          main.c \
+          utils.c \
+          vorbiscomment.c
+}
+
+app iffscan : lib flac
+{
+  HEADER_DIRS src/flac
+  SOURCE_DIRS src/flac
+  HEADERS foreign_metadata.h
+  SOURCES foreign_metadata.c \
+          iffscan.c
+}

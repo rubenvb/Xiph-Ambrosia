@@ -47,7 +47,7 @@ lib vorbis : lib ogg
           window.c
 }
 
-lib vorbisfile
+lib vorbisfile : lib ogg
 {
   SOURCES vorbisfile.c
 }

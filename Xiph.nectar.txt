@@ -1,4 +1,4 @@
-##
+﻿##
 # Project Ambrosia: Example: the xiph media libraries
 #  Note: only the *.nectar.txt files are under the CC0 license, the actual source code is licensed seperately.
 #
@@ -12,10 +12,10 @@
 # If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 #
 
-sub ogg
+sub libogg
 
-sub vorbis : lib ogg
+sub libvorbis : lib libogg
 
-sub flac: lib ogg
+sub flac: lib libogg
 
-sub libao
+#sub libao
