@@ -21,7 +21,9 @@ global
 
 lib flac : lib ogg
 {
-  DEFINES VERSION="1.2.1b"
+  DEFINES VERSION="\"1.2.1b\"" \
+          FLAC__HAS_OGG \
+          (x86|AMD64) FLAC__CPU_IA32
   HEADER_DIRS src/libFLAC/include
   SOURCE_DIRS src/libFLAC
   HEADERS FLAC/all.h \
@@ -54,28 +56,29 @@ lib flac : lib ogg
           stream_encoder.c \
           stream_encoder_framing.c \
           window.c
+  (windows)LIBS -lWs2_32
 }
 
-app flac : lib flac
-{
-  HEADER_DIRS src/flac
-  SOURCE_DIRS src/flac
-  HEADERS analyze.h \
-          decode.h \
-          encode.h \
-          foreign_metadata.h \
-          local_string_utils.h \
-          utils.h \
-          vorbiscomment.h
-  SOURCES analyze.c \
-          decode.c \
-          encode.c \
-          foreign_metadata.c \
-          local_string_utils.c \
-          main.c \
-          utils.c \
-          vorbiscomment.c
-}
+#app flac : lib flac
+#{
+#  HEADER_DIRS src/flac
+#  SOURCE_DIRS src/flac
+#  HEADERS analyze.h \
+#          decode.h \
+#          encode.h \
+#          foreign_metadata.h \
+##          local_string_utils.h \
+#          utils.h \
+#          vorbiscomment.h
+#  SOURCES analyze.c \
+#          decode.c \
+##          encode.c \
+#          foreign_metadata.c \
+#          local_string_utils.c \
+#          main.c \
+#          utils.c \
+#          vorbiscomment.c
+#}
 
 app iffscan : lib flac
 {
